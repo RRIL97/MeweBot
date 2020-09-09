@@ -2,7 +2,7 @@ MeWe.com Bot
 -----------
                                                                   
                                                                   
-A simple bot that I have written to automate tasks on mewe.com.
+A simple bot that I have written to automate tasks on mewe.com utilizing pure GET/POST requests.
 Mewe.com has the same functionality as facebook
 
 This bot allows you to easily
