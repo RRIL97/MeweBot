@@ -12,8 +12,6 @@ public class Mewe{
     
     private Connection    connector;   
     private String        userCookie    = "";
-    
-    private boolean       botHasFinished = false;  
     private csrfFetch     csrfFetcher;
     
     private ArrayList<String> cookies = new ArrayList<String>();
@@ -47,12 +45,11 @@ public class Mewe{
     
     public void shareInGroup(String groupId, String mediaID)
     {
-        //https://mewe.com/api/v3/group/5ee01e12edc1ec5407a552a9/post/5f58c403699f5d192d63217e/reshare/group/5ee01e12edc1ec5407a552a9
         pageSource = connector.initatePost("https://mewe.com/api/v3/group/"+groupId+"/post/"+mediaID+"/reshare/group/"+groupId,userAgent,"{\"newText\":\"\",\"public\":false,\"closeFriends\":false,\"postedByPage\":false,\"emojisPreset\":[]}", csrfFetcher.getCsrf(),cookies);
         System.out.println("Sent Post To Group , Group Id:  " + groupId+" mediaID: "+ mediaID);
     }
     
-    //Fetches user joined group id's
+    //Fetches joined group id's of a user
     public ArrayList<String> getJoinedGroups(){
         ArrayList<String> joinedGroups  = new ArrayList<>(); 
         try{
@@ -78,7 +75,7 @@ public class Mewe{
         }
         return joinedGroups;
     }
-    //applies to group by name
+    //sends request to join a group by it's name
     public void applyToGroup(String groupName){
         pageSource = connector.initatePost("https://mewe.com/api/v2/group/public/"+groupName+"/apply", userAgent, "",csrfFetcher.getCsrf(),cookies);
         System.out.println("Applying To "+ groupName + " -> " + pageSource); 
