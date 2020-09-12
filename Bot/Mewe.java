@@ -49,7 +49,7 @@ public class Mewe{
         System.out.println("Sent Post To Group , Group Id:  " + groupId+" mediaID: "+ mediaID);
     }
     
-    //Fetches joined group id's of a user
+    //Fetches groups that the user is a apart of.
     public ArrayList<String> getJoinedGroups(){
         ArrayList<String> joinedGroups  = new ArrayList<>(); 
         try{
@@ -75,7 +75,7 @@ public class Mewe{
         }
         return joinedGroups;
     }
-    //sends request to join a group by it's name
+    //sends a request to join a group with name: groupName
     public void applyToGroup(String groupName){
         pageSource = connector.initatePost("https://mewe.com/api/v2/group/public/"+groupName+"/apply", userAgent, "",csrfFetcher.getCsrf(),cookies);
         System.out.println("Applying To "+ groupName + " -> " + pageSource); 
